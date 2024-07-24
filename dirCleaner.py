@@ -117,4 +117,4 @@ class DirCleaner:
 
 
 if __name__ == "__main__":
-    # DirCleaner().cleaner()
+    DirCleaner().cleaner()

@@ -7,7 +7,7 @@ scrabble = ['A', 1, 'B', 3, 'C', 3, 'D', 2, 'E', 1, 'F', 4, 'G', 2, 'H', 4,
 def Valeur(lettre):
     """ renvoie le nombre de points associé à une lettre
     """
-    return(scrabble[scrabble.index(lettre)+1])
+    return (scrabble[scrabble.index(lettre)+1])
 
 
 def MaxiLettre(liste):

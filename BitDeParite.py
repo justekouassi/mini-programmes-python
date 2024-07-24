@@ -1,4 +1,4 @@
-def CorrectionPair(msg):
+def CorrectionPair(msg) -> str:
     msg = str(msg)
     if msg.count('1') % 2 == 0:
         msg = '0'+msg

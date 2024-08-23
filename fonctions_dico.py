@@ -1,88 +1,63 @@
-def trierMots(document):
-    """ trier les mots du dico dans l'ordre alphabétique
-    """
-    fichier = open(document, "r", encoding='utf-8')
-    liste = fichier.readlines()
+def trier_mots(document):
+    """ Trier les mots du dico dans l'ordre alphabétique """
+    with open(document, "r", encoding="utf-8") as fichier:
+        liste = fichier.readlines()
     liste.sort()
-    fichier.close()
-    fichier = open(document, "w")
-    for i in range(0, len(liste)):
-        fichier.write(liste[i])
-    fichier.close()
+    ecrire(liste, document)
 
 
 def arranger(document):
-    fichier = open(document, "r")
-    content = fichier.read().replace(" ", "\n")
-    fichier.close()
-
-    fichier = open(document, "w")
-
-    for i in range(0, len(content)):
-        fichier.write(content[i])
-    fichier.close()
+    """ Remplacer les espaces par des nouvelles lignes """
+    with open(document, "r", encoding="utf-8") as fichier:
+        content = fichier.read().replace(" ", "\n")
+    ecrire(content, document)
 
 
-def majusculeDico(document):
-    """ mettre chacun des mots du dico en majuscule
-    """
-    fichier = open(document, "r")
-    liste = fichier.readlines()
-    fichier.close()
-
-    for i in range(0, len(liste)):
-        liste[i] = liste[i].upper()
-
-    fichier = open(document, "w")
-    for i in range(0, len(liste)):
-        fichier.write(liste[i])
-    fichier.close()
+def majuscule_dico(document):
+    """ Mettre chaque mot du dico en majuscule """
+    with open(document, "r", encoding="utf-8") as fichier:
+        liste = fichier.readlines()
+    liste = [mot.upper() for mot in liste]
+    ecrire(liste, document)
 
 
 def doublon(document):
-    fichier = open(document, "r")
-    liste = fichier.readlines()
+    """ Éliminer les doublons consécutifs dans le fichier """
+    with open(document, "r", encoding="utf-8") as fichier:
+        liste = fichier.readlines()
+
     liste2 = []
-    fichier.close()
+    for i in range(len(liste)):
+        if i == 0 or liste[i] != liste[i - 1]:
+            liste2.append(liste[i])
 
-    i = 0
-    while i < len(liste):
-        liste2.append(liste[i])
-        if i == len(liste)-1:
-            break
-        if liste[i+1] == liste[i]:
-            i += 1
-        i += 1
-
-    ecrire(liste2)
+    ecrire(liste2, document)
 
 
-def ecrire(liste):
-    fichier = open(document, "w")
-    for i in range(0, len(liste)):
-        fichier.write(liste[i])
-    fichier.close()
+def dix_lettres(document, output_file="dix_lettres.txt"):
+    """ Garder uniquement les mots de 10 lettres """
+    with open(document, "r", encoding="utf-8") as fichier:
+        liste = fichier.readlines()
+
+    mots_10_lettres = [mot for mot in liste if len(mot.strip()) == 10]
+    ecrire(mots_10_lettres, output_file)
 
 
-def dix_lettres(document):
-    """ prend un dictionnaire et ne garde que les mots de 10 lettres
-    """
-    fichier = open(document, "r")
-    liste = fichier.readlines()
-    fichier.close()
-    fichier2 = open(" ", "w")
-    for mot in liste:
-        if len(mot) == 11:
-            fichier2.write(mot)
-    fichier2.close()
+def ecrire(contenu, document):
+    """ Écrire du contenu dans un fichier """
+    if isinstance(contenu, list):
+        contenu = "".join(contenu)
+
+    with open(document, "w", encoding="utf-8") as fichier:
+        fichier.write(contenu)
 
 
 # Saisissez ici le nom du document à traiter
-document = ""
+document = "votre_document.txt"
 
 # Décommentez le traitement que vous souhaitez utiliser
-# trierMots(document)
+# trier_mots(document)
 # arranger(document)
-# majusculeDico(document)
+# majuscule_dico(document)
 # doublon(document)
 # dix_lettres(document)

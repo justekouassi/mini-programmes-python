@@ -1,4 +1,4 @@
-def triBulle(liste):
+def triBulle(liste: list) -> list:
     echange = True
     while echange:
         echange = False
@@ -6,8 +6,8 @@ def triBulle(liste):
             if liste[i] > liste[i+1]:
                 liste[i], liste[i+1] = liste[i+1], liste[i]
                 echange = True
-    return (liste)
+    return liste
 
 
-liste = [25, 0, 4, 17, 63, 4, 5, 7, 9, 2, 8, 3, 4]
+liste: list[int] = [25, 0, 4, 17, 63, 4, 5, 7, 9, 2, 8, 3, 4]
 print(triBulle(liste))

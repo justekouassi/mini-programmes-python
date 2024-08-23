@@ -31,7 +31,7 @@ def CompteCarac(mot, lettre):
     return mot.count(lettre)
 
 
-def Verif(jeu, mot, lettre):
+def Verif(jeu: list, mot: str, lettre: str) -> bool:
     """ 
     jeu -- liste de lettres majuscules (les lettres dont dispose le joueur)
     mot -- chaîne de caractères (constituée de lettres majuscules, mot que voudrait écrire le joueur) 
